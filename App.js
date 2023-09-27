@@ -1,20 +1,18 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { ScrollView, StyleSheet } from 'react-native';
+import NavBar from './src/components/NavBar';
+import SearchInput from './src/components/Search';
+import CarouselSection from './src/components/Carousel';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>oii gente</Text>
-      <StatusBar style="auto" />
-    </View>
+    <ScrollView style={styles.container}>
+      <NavBar/>
+      <SearchInput/>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
 });
