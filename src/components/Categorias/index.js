@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         flexWrap: 'wrap',
         marginVertical: -(gap / 2),
-        marginHorizontal: -(gap / 2),
+        marginHorizontal: (gap / 2),
         backgroundColor: '#ffffff'
     },
     titulo: {
