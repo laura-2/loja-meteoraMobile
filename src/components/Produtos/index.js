@@ -1,31 +1,24 @@
-import {Button, Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { useState } from "react";
+import {Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import ModalProduto from "../Modal";
 
-export default function Produtos(){
-    const produtosPecas = [
-        {url: require('../../../assets/card/bolsa.png'),texto: 'Bolsa coringa', descricao: 'Bolsa camel em couro sintético de alta duração. Ideal para acompanhar você por uma vida!', preco: 'R$ 120,00'},
-        {url: require('../../../assets/card/tenis.png'),texto: 'Tênis Chunky', descricao: 'Snicker casual com solado mais alto e modelagem robusta. Modelo unissex.', preco: 'R$ 250,00'},
-        {url: require('../../../assets/card/calça.png'),texto: 'Calça Alfaiataria', descricao: 'Modelo Wide Leg alfaiataria em linho. Uma peça pra vida toda!', preco: 'R$ 180,00'},
-        {url: require('../../../assets/card/camiseta.png'),texto: 'Camisa conforto', descricao: 'Multicores e tamanhos. Tecido de algodão 100%, fresquinho para o verão. Modelagem unissex.', preco: 'R$ 70,00'},
-        {url: require('../../../assets/card/jeans.png'),texto: 'Jaqueta Jeans', descricao: 'Modelo unissex oversized com gola de camurça. Atemporal e autêntica!', preco: 'R$ 150,00'},
-        {url: require('../../../assets/card/oculos.png'),texto: 'Óculos Redondo', descricao: 'Armação metálica em grafite com lentes arredondadas. Sem erro!', preco: 'R$ 120,00'}
-    ]
+export default function Produtos({url, texto, descricao, preco}){
+    const [modalOpen, setModalOpen] = useState(false)
+
     return(
         <SafeAreaView>
-            <Text style={styles.titulo}>Produtos que estão bombando!</Text>
             <View style={styles.estrutura}>
-        {produtosPecas.map((item, index)=>{
-            return(
-                <View style={styles.produtos} key={index}>
-                    <Image source={item.url} alt={item.texto} style={styles.imagemProduto}/>
-                    <Text style={styles.tituloProduto}>{item.texto}</Text>
-                    <Text style={styles.descricao}>{item.descricao}</Text> 
-                    <Text style={styles.preco}>{item.preco}</Text>
-                    <TouchableOpacity style={styles.botaoVerMais}>
+                <View style={styles.produtos}>
+                    <Image source={url} alt={texto} style={styles.imagemProduto}/>
+                    <Text style={styles.tituloProduto}>{texto}</Text>
+                    <Text style={styles.descricao}>{descricao}</Text> 
+                    <Text style={styles.preco}>{preco}</Text>
+                    <TouchableOpacity style={styles.botaoVerMais} onPress={()=>setModalOpen(true)}>
                         <Text style={styles.textoBotao}>Ver mais</Text>
                     </TouchableOpacity>
+                    {modalOpen && (
+                    <ModalProduto/>)}
                 </View>
-            )
-        })}
         </View>
         </SafeAreaView>
     )
@@ -37,12 +30,6 @@ const styles = StyleSheet.create({
         display: 'flex',
         flexDirection: 'column',
         gap: '1rem'
-    },
-    titulo: {
-        textAlign: 'center',
-        color: '#000000',
-        fontSize: '28px',
-        marginVertical: '5%'
     },
     produtos:{
         display: 'flex',

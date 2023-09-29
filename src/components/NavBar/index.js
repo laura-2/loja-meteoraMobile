@@ -1,5 +1,14 @@
 import { useState } from "react";
 import { FlatList, Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import styled from "styled-components";
+
+const Title = styled.p`
+    color:#ffffff;
+    fontSize: 16px;
+    &:hover{
+        color: #DAFF01;
+    }
+`;
 
 export default function NavBar(){
     const [open, setOpen] = useState(false)
@@ -7,7 +16,7 @@ export default function NavBar(){
     function OptionItem({ item }) {
         return (
           <View style={styles.option}>
-            <Text style={styles.texto}>{item}</Text>
+            <Title>{item}</Title>
           </View>
         );
       }
@@ -20,7 +29,7 @@ export default function NavBar(){
             </TouchableOpacity>
             {open && 
             <View style={styles.menu}>
-                <TouchableOpacity onPress={()=> setOpen(open)}>
+                <TouchableOpacity onPress={()=> setOpen(true)}>
                 <Image source={require('../../../assets/marca-cruzada.png')} alt="Fechar" style={styles.close}/>
                 </TouchableOpacity>
             <FlatList
@@ -41,7 +50,8 @@ const styles = StyleSheet.create({
       display: 'flex',
       flexDirection: 'row',
       gap: '9rem',
-      padding: '5%'
+      padding: '5%',
+      zIndex: 1
     },
     logoImage: {
         width: '125px',
@@ -52,15 +62,15 @@ const styles = StyleSheet.create({
         height: '18px',
     },
     option:{
-        marginVertical: '5%',
+        marginVertical: 0,
     },
     menu:{
         backgroundColor: '#343A40',
         position: 'absolute',
         top: 0,
         padding: '5%',
-        left: 220,
-        display: 'flex'
+        left: 186,
+        width: '144px'
 
 
     },
@@ -70,10 +80,6 @@ const styles = StyleSheet.create({
         width: '18px',
         height: '17px'
 
-    },
-    texto:{
-        color:'#ffffff',
-        padding: '3%',
     }
   });
   
